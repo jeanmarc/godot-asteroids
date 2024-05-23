@@ -2,23 +2,35 @@ extends CharacterBody2D
 
 @export var acceleration := 10.0
 @export var max_speed := 400.0
-@export var rotation_speed := 4.0
+@export var angular_acceleration := 10.0
+@export var max_rotation := 10.0
+var angular_speed: float
+
+func _ready():
+	angular_speed = 0.0
 
 func _physics_process(delta):
 	var input_vector := Vector2(0, Input.get_axis("forward", "back"))
 	velocity += input_vector.rotated(rotation) * acceleration
 	velocity = velocity.limit_length(max_speed)
 
-	if Input.is_action_pressed("rotate_cw"):
-		rotate(delta * rotation_speed)
+	var angular_direction := Input.get_axis("rotate_ccw", "rotate_cw")
 
-	if Input.is_action_pressed("rotate_ccw"):
-		rotate(-1.0 * delta * rotation_speed)
+	if angular_direction == 0:
+		angular_speed = Vector2(angular_speed, 0).move_toward(Vector2.ZERO, 0.2).x
+	else:
+		angular_speed += angular_direction * delta * angular_acceleration
+
+	angular_speed = clamp(angular_speed, -max_rotation, max_rotation)
+
+	rotate(delta * angular_speed)
 
 	if input_vector.y == 0:
-		velocity = velocity.move_toward(Vector2.ZERO, 2)
+		velocity = velocity.move_toward(Vector2.ZERO, 1)
 
 	move_and_slide()
+
+	print(angular_speed)
 
 	var screen_size = get_viewport_rect().size
 
