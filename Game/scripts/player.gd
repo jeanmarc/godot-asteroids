@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 func _physics_process(delta):
 	var input_vector := Vector2(0, Input.get_axis("forward", "back"))
-	velocity += input_vector * acceleration
+	velocity += input_vector.rotated(rotation) * acceleration
 	velocity = velocity.limit_length(max_speed)
 
 	if Input.is_action_pressed("rotate_cw"):
