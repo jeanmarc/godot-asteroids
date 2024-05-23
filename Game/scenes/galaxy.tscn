@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cym4j833qkj1c"]
+[gd_scene load_steps=4 format=3 uid="uid://cym4j833qkj1c"]
 
 [ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
 [ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
+[ext_resource type="PackedScene" uid="uid://bu1yjb7kn6kvl" path="res://scenes/asteroid.tscn" id="3_2grgs"]
 
 [node name="Galaxy" type="Node2D"]
 script = ExtResource("1_toxde")
+
+[node name="Asteroid" parent="." instance=ExtResource("3_2grgs")]
+position = Vector2(518, 468)
 
 [node name="Player" parent="." instance=ExtResource("1_amfso")]
 position = Vector2(628, 364)
