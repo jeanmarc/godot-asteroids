@@ -5,6 +5,8 @@ extends Node2D
 
 var asteroid_scene = preload("res://scenes/asteroid.tscn")
 
+var score := 0
+
 func _ready():
 	for asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
@@ -16,7 +18,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
-func _on_asteroid_exploded(pos, size):
+func _on_asteroid_exploded(pos, size, points):
+	score += points
+	print(score)
 	for i in range(3):
 		match size:
 			Asteroid.AsteroidSize.LARGE:
