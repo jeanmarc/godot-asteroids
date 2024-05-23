@@ -20,7 +20,6 @@ func _process(_delta):
 
 func _on_asteroid_exploded(pos, size, points):
 	score += points
-	print(score)
 	for i in range(3):
 		match size:
 			Asteroid.AsteroidSize.LARGE:
