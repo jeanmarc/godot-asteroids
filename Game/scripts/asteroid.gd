@@ -10,7 +10,7 @@ enum AsteroidSize{LARGE, MEDIUM, SMALL}
 
 var movement_vector := Vector2(0, -1)
 
-var speed := 60
+var speed := 60.0
 var angular_speed = randf_range(-1, 1)
 
 func _ready():
