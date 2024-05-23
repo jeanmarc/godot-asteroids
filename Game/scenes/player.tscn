@@ -7,6 +7,8 @@
 radius = 26.0192
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_uuwyq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,3 +18,10 @@ texture = ExtResource("1_8xmaf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 5)
 shape = SubResource("CircleShape2D_hixxg")
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(-1, -24)
+
+[node name="MuzzleCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="MuzzleCooldown" to="." method="_on_muzzle_cooldown_timeout"]

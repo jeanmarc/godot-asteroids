@@ -1,13 +1,32 @@
 extends CharacterBody2D
 
+signal laser_shot(laser)
+
 @export var acceleration := 10.0
 @export var max_speed := 400.0
 @export var angular_acceleration := 10.0
 @export var max_rotation := 10.0
+
+@onready var muzzle = $Muzzle
+
+var laser_scene = preload("res://scenes/laser.tscn")
+
 var angular_speed: float
+var shoot_cooldown = false
+
+@export var fire_rate := 0.2
 
 func _ready():
 	angular_speed = 0.0
+
+func _process(delta):
+	if Input.is_action_pressed("fire"):
+		if !shoot_cooldown:
+			shoot_laser()
+			shoot_cooldown = true
+			$MuzzleCooldown.wait_time = fire_rate
+			$MuzzleCooldown.start()
+
 
 func _physics_process(delta):
 	var input_vector := Vector2(0, Input.get_axis("forward", "back"))
@@ -30,8 +49,6 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	print(angular_speed)
-
 	var screen_size = get_viewport_rect().size
 
 	if global_position.y < 0:
@@ -43,3 +60,13 @@ func _physics_process(delta):
 		global_position.x = screen_size.x
 	elif global_position.x > screen_size.x:
 		global_position.x = 0
+
+func shoot_laser():
+	var l = laser_scene.instantiate()
+	l.global_position = muzzle.global_position
+	l.rotation = rotation
+	emit_signal("laser_shot", l)
+
+
+func _on_muzzle_cooldown_timeout():
+	shoot_cooldown = false

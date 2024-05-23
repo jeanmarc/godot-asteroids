@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cym4j833qkj1c"]
+[gd_scene load_steps=3 format=3 uid="uid://cym4j833qkj1c"]
 
 [ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
+[ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
 
 [node name="Galaxy" type="Node2D"]
+script = ExtResource("1_toxde")
 
 [node name="Player" parent="." instance=ExtResource("1_amfso")]
 position = Vector2(628, 364)
+
+[node name="Lasers" type="Node" parent="."]
+
+[connection signal="laser_shot" from="Player" to="." method="_on_player_laser_shot"]
