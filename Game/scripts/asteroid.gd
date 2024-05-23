@@ -18,20 +18,21 @@ func _ready():
 
 	match size:
 		AsteroidSize.LARGE:
-			speed = randf_range(40, 60)
+			speed = randf_range(40.0, 60.0)
 			sprite.texture = preload("res://assets/AsteroidBig.png")
 			cshape.shape = preload("res://resources/asteroid_cshape_large.tres")
 		AsteroidSize.MEDIUM:
-			speed = randf_range(80, 100)
+			speed = randf_range(80.0, 100.0)
 			sprite.texture = preload("res://assets/AsteroidMedium.png")
 			cshape.shape = preload("res://resources/asteroid_cshape_medium.tres")
 		AsteroidSize.SMALL:
-			speed = randf_range(80, 150)
+			speed = randf_range(80.0, 160.0)
 			sprite.texture = preload("res://assets/AsteroidSmall.png")
 			cshape.shape = preload("res://resources/asteroid_cshape_small.tres")
 
 func _process(delta):
-	$Sprite2D.rotation += delta * angular_speed
+	sprite.rotation += delta * angular_speed
+	cshape.rotation += delta * angular_speed
 
 func _physics_process(delta):
 	global_position += movement_vector.rotated(rotation) * speed * delta

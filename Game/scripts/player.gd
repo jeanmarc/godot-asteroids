@@ -19,7 +19,7 @@ var shoot_cooldown = false
 func _ready():
 	angular_speed = 0.0
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("fire"):
 		if !shoot_cooldown:
 			shoot_laser()

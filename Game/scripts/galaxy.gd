@@ -31,4 +31,4 @@ func spawn_asteroid(pos, size):
 	a.global_position = pos
 	a.size = size
 	a.connect("exploded", _on_asteroid_exploded)
-	asteroids.add_child(a)
+	asteroids.call_deferred("add_child", a)
