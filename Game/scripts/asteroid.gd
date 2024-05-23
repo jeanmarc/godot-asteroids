@@ -1,4 +1,6 @@
-extends Area2D
+class_name Asteroid extends Area2D
+
+signal exploded(pos, size)
 
 enum AsteroidSize{LARGE, MEDIUM, SMALL}
 @export var size := AsteroidSize.LARGE
@@ -45,3 +47,7 @@ func _physics_process(delta):
 		global_position.x = screen_size.x + radius
 	elif global_position.x - radius > screen_size.x:
 		global_position.x = 0 - radius
+
+func explode():
+	emit_signal("exploded", global_position, size)
+	queue_free()
