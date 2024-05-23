@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu1yjb7kn6kvl"]
+
+[ext_resource type="Texture2D" uid="uid://bc0bdtl7a4dnr" path="res://assets/AsteroidBig.png" id="1_m7irw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oirfl"]
+radius = 55.0091
+
+[node name="Asteroid" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m7irw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -4)
+shape = SubResource("CircleShape2D_oirfl")
