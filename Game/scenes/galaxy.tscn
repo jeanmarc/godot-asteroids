@@ -34,4 +34,11 @@ position = Vector2(1049, 353)
 [node name="Asteroid5" parent="Asteroids" instance=ExtResource("3_2grgs")]
 position = Vector2(872, 653)
 
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="PlayerSpawnPos" type="Node2D" parent="."]
+position = Vector2(622, 373)
+
 [connection signal="laser_shot" from="Player" to="." method="_on_player_laser_shot"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
