@@ -2,12 +2,17 @@ extends Node2D
 
 @onready var lasers = $Lasers
 @onready var asteroids = $Asteroids
+@onready var hud = $UI/HUD
 
 var asteroid_scene = preload("res://scenes/asteroid.tscn")
 
-var score := 0
+var score := 0:
+	set(value):
+		score = value
+		hud.score = score
 
 func _ready():
+	score = 0
 	for asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
 
