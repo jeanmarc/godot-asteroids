@@ -26,6 +26,7 @@ var points: int:
 
 func _ready():
 	rotation = randf_range(0, TAU)
+	rotation = 0
 
 	match size:
 		AsteroidSize.LARGE:
@@ -65,14 +66,13 @@ func explode():
 	queue_free()
 
 func _on_body_entered(body: Player):
-	print(Time.get_time_string_from_system() + " Something hit " + self.name)
 	if body:
-		print("was " + body.name)
+		print(Time.get_time_string_from_system(), " ", body.name," hit " + self.name)
 		var dist = global_position.distance_to(body.global_position)
 		var collisionDist = cshape.shape.radius + body.cshape.shape.radius
-		print("I am at ", global_position, ", player is at ", body.global_position, "distance is ", dist, " collisionSize is ", collisionDist)
+		print("I am at ", cshape.global_position, ", player is at ", body.cshape.global_position, "distance is ", dist, " collisionSize is ", collisionDist)
 		if body.alive:
-			if dist <= collisionDist:
+			if dist <= collisionDist + 2:
 				body.die(self)
 			else:
 				print("Too far, won't kill player")

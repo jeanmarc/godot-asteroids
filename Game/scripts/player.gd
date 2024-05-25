@@ -77,7 +77,6 @@ func _on_muzzle_cooldown_timeout():
 	shoot_cooldown = false
 
 func die(sourceOfDeath: Asteroid):
-	process_mode = Node.PROCESS_MODE_DISABLED
 	print(Time.get_time_string_from_system() + " die")
 	if alive:
 		print("Death by " + sourceOfDeath.name)
@@ -86,6 +85,7 @@ func die(sourceOfDeath: Asteroid):
 		global_position = Vector2(-1000,-1000)
 		print("dying")
 		emit_signal("died")
+		process_mode = Node.PROCESS_MODE_DISABLED
 	else:
 		print("Death by " + sourceOfDeath.name)
 		print("already dead")
