@@ -10,6 +10,7 @@ signal died
 
 @onready var muzzle = $Muzzle
 @onready var sprite = $Sprite2D
+@onready var cshape = $CollisionShape2D
 
 var laser_scene = preload("res://scenes/laser.tscn")
 

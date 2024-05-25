@@ -21,23 +21,18 @@ position = Vector2(628, 364)
 
 [node name="Asteroid2" parent="Asteroids" instance=ExtResource("3_2grgs")]
 position = Vector2(989, 88)
-size = 0
 
 [node name="Asteroid" parent="Asteroids" instance=ExtResource("3_2grgs")]
 position = Vector2(276, 262)
-size = 0
 
 [node name="Asteroid3" parent="Asteroids" instance=ExtResource("3_2grgs")]
 position = Vector2(197, 612)
-size = 0
 
 [node name="Asteroid4" parent="Asteroids" instance=ExtResource("3_2grgs")]
 position = Vector2(1049, 353)
-size = 0
 
 [node name="Asteroid5" parent="Asteroids" instance=ExtResource("3_2grgs")]
 position = Vector2(872, 653)
-size = 0
 
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 2.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2dueasy31sjv"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_4mqjp"]
-[ext_resource type="FontFile" uid="uid://cciyvr5v03hk3" path="res://assets/HydrogenWhiskey.otf" id="2_slci2"]
+[ext_resource type="FontFile" uid="uid://bwkhxrrxr3qnr" path="res://assets/HydrogenWhiskey.otf" id="2_slci2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mx7k2"]
 font = ExtResource("2_slci2")

@@ -68,8 +68,14 @@ func _on_body_entered(body: Player):
 	print(Time.get_time_string_from_system() + " Something hit " + self.name)
 	if body:
 		print("was " + body.name)
+		var dist = global_position.distance_to(body.global_position)
+		var collisionDist = cshape.shape.radius + body.cshape.shape.radius
+		print("I am at ", global_position, ", player is at ", body.global_position, "distance is ", dist, " collisionSize is ", collisionDist)
 		if body.alive:
-			body.die(self)
+			if dist <= collisionDist:
+				body.die(self)
+			else:
+				print("Too far, won't kill player")
 		else:
 			print("I see it's already dead")
 	else:

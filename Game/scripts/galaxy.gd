@@ -25,8 +25,9 @@ func _ready():
 	player.connect("died", _on_player_died)
 	respawn_timer.connect("timeout", _on_respawn_timer_timeout)
 
-	for asteroid in asteroids.get_children():
+	for asteroid: Asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
+		asteroid.connect("body_entered", asteroid._on_body_entered)
 
 func _on_player_died():
 	if lives > 1:
@@ -35,7 +36,7 @@ func _on_player_died():
 		respawn_timer.start()
 	else:
 		print("game over")
-		get_tree().reload_current_scene()
+
 
 func _on_player_laser_shot(laser):
 	lasers.add_child(laser)
