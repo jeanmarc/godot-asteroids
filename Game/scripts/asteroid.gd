@@ -64,7 +64,13 @@ func explode():
 	emit_signal("exploded", global_position, size, points)
 	queue_free()
 
-func _on_body_entered(body):
-	if body is Player:
-		var player = body
-		player.die()
+func _on_body_entered(body: Player):
+	print(Time.get_time_string_from_system() + " Something hit " + self.name)
+	if body:
+		print("was " + body.name)
+		if body.alive:
+			body.die(self)
+		else:
+			print("I see it's already dead")
+	else:
+		print("was not a player")

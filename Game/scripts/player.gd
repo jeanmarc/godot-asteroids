@@ -75,18 +75,28 @@ func shoot_laser():
 func _on_muzzle_cooldown_timeout():
 	shoot_cooldown = false
 
-func die():
+func die(sourceOfDeath: Asteroid):
+	process_mode = Node.PROCESS_MODE_DISABLED
+	print(Time.get_time_string_from_system() + " die")
 	if alive:
+		print("Death by " + sourceOfDeath.name)
 		alive = false
-		sprite.visible = false
-		process_mode = Node.PROCESS_MODE_DISABLED
+		# move off screen to prevent additional hit during respawn
+		global_position = Vector2(-1000,-1000)
+		print("dying")
 		emit_signal("died")
+	else:
+		print("Death by " + sourceOfDeath.name)
+		print("already dead")
 
 func respawn(pos):
+	print(Time.get_time_string_from_system() + " respawn")
 	if !alive:
 		alive = true
 		global_position = pos
 		velocity = Vector2.ZERO
 		angular_speed = 0
-		sprite.visible = true
+		print("resurrected")
 		process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		print("already alive")

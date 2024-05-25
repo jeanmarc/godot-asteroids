@@ -23,12 +23,13 @@ func _ready():
 
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
+	respawn_timer.connect("timeout", _on_respawn_timer_timeout)
 
 	for asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
 
 func _on_player_died():
-	if lives > 0:
+	if lives > 1:
 		lives -= 1
 		print(lives)
 		respawn_timer.start()
