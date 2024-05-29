@@ -17,3 +17,5 @@ All resources in the game are CC0 by Jean-Marc van Leerdam, 2024, except for:
 	* gameMusic by Magntron -- https://freesound.org/s/335571/ -- License: Creative Commons 0
 * gameOver.wav
 	* Game Over Arcade by Mountain_Man -- https://freesound.org/s/382310/ -- License: Creative Commons 0
+* game-win.mp3
+	* game-win.mp3 by mickleness -- https://freesound.org/s/269198/ -- License: Creative Commons 0

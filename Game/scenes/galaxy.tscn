@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cym4j833qkj1c"]
+[gd_scene load_steps=17 format=3 uid="uid://cym4j833qkj1c"]
 
 [ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
 [ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://difgqvmkqeuws" path="res://assets/crash.wav" id="10_qr7s8"]
 [ext_resource type="AudioStream" uid="uid://d1d23ic4tqd7m" path="res://assets/gameMusic.mp3" id="11_h4omf"]
 [ext_resource type="AudioStream" uid="uid://xpn43aivrfcf" path="res://assets/gameOver.wav" id="11_sic5m"]
+[ext_resource type="AudioStream" uid="uid://b4whucam3fobh" path="res://assets/game-win.mp3" id="12_u4oth"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rl0qb"]
 particle_flag_disable_z = true
@@ -107,6 +108,10 @@ position = Vector2(872, 653)
 wait_time = 2.0
 one_shot = true
 
+[node name="CheckWinTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
 position = Vector2(622, 373)
 
@@ -127,6 +132,9 @@ stream = ExtResource("10_qr7s8")
 
 [node name="GameOver" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_sic5m")
+
+[node name="GameWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_u4oth")
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_h4omf")
