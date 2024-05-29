@@ -77,7 +77,7 @@ func _on_muzzle_cooldown_timeout():
 	shoot_cooldown = false
 
 func die(sourceOfDeath: Asteroid):
-	print(Time.get_time_string_from_system() + " die")
+	print(Time.get_unix_time_from_system(), " die")
 	if alive:
 		print("Death by " + sourceOfDeath.name)
 		alive = false
@@ -91,7 +91,7 @@ func die(sourceOfDeath: Asteroid):
 		print("already dead")
 
 func respawn(pos):
-	print(Time.get_time_string_from_system() + " respawn")
+	print(Time.get_unix_time_from_system(), " respawn")
 	if !alive:
 		alive = true
 		global_position = pos

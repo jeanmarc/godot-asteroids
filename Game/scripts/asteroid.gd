@@ -67,7 +67,7 @@ func explode():
 
 func _on_body_entered(body: Player):
 	if body:
-		print(Time.get_time_string_from_system(), " ", body.name," hit " + self.name)
+		print(Time.get_unix_time_from_system(), " ", body.name," hit " + self.name)
 		var dist = global_position.distance_to(body.global_position)
 		var collisionDist = cshape.shape.radius + body.cshape.shape.radius
 		print("I am at ", cshape.global_position, ", player is at ", body.cshape.global_position, "distance is ", dist, " collisionSize is ", collisionDist)
