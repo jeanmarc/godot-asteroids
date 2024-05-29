@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cym4j833qkj1c"]
+[gd_scene load_steps=6 format=3 uid="uid://cym4j833qkj1c"]
 
 [ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
 [ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
 [ext_resource type="PackedScene" uid="uid://d2dueasy31sjv" path="res://scenes/hud.tscn" id="2_g23xk"]
 [ext_resource type="PackedScene" uid="uid://bu1yjb7kn6kvl" path="res://scenes/asteroid.tscn" id="3_2grgs"]
+[ext_resource type="PackedScene" uid="uid://ydhplh5chlyo" path="res://scenes/game_over.tscn" id="3_8a6gk"]
 
 [node name="Galaxy" type="Node2D"]
 script = ExtResource("1_toxde")
@@ -11,6 +12,9 @@ script = ExtResource("1_toxde")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("2_g23xk")]
+
+[node name="GameOver" parent="UI" instance=ExtResource("3_8a6gk")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_amfso")]
 position = Vector2(628, 364)

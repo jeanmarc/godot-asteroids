@@ -4,6 +4,7 @@ extends Node2D
 @onready var player = $Player
 @onready var asteroids = $Asteroids
 @onready var hud = $UI/HUD
+@onready var game_over = $UI/GameOver
 @onready var respawn_timer = $RespawnTimer
 
 var asteroid_scene = preload("res://scenes/asteroid.tscn")
@@ -19,8 +20,9 @@ var lives := 3:
 		hud.init_lives(value)
 
 func _ready():
+	game_over.visible = false
 	score = 0
-	lives = 5
+	lives = 1
 	print("start")
 	print(lives)
 
@@ -38,6 +40,8 @@ func _on_player_died():
 		print(lives)
 		respawn_timer.start()
 	else:
+		lives = 0
+		game_over.visible = true
 		print("game over")
 
 
