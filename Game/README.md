@@ -15,3 +15,5 @@ All resources in the game are CC0 by Jean-Marc van Leerdam, 2024, except for:
 	* Sharp Explosion, Lots of Debris.wav by Superex1110 -- https://freesound.org/s/77535/ -- License: Attribution NonCommercial 4.0
 * gameMusic.wav
 	* gameMusic by Magntron -- https://freesound.org/s/335571/ -- License: Creative Commons 0
+* gameOver.wav
+	* Game Over Arcade by Mountain_Man -- https://freesound.org/s/382310/ -- License: Creative Commons 0

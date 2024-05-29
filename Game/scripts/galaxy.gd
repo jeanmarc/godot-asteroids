@@ -8,6 +8,10 @@ extends Node2D
 @onready var respawn_timer = $RespawnTimer
 @onready var spawn_pos = $PlayerSpawnPos
 @onready var spawn_area = $PlayerSpawnPos/PlayerSpawnArea
+@onready var background = $Background
+@onready var starfieldBack: GPUParticles2D = $Background/StarfieldBack
+@onready var starfieldMiddle: GPUParticles2D = $Background/StarfieldMiddle
+@onready var starfieldFront: GPUParticles2D = $Background/StarfieldFront
 
 var asteroid_scene = preload("res://scenes/asteroid.tscn")
 
@@ -22,6 +26,9 @@ var lives: int:
 		hud.init_lives(value)
 
 func _ready():
+	get_tree().get_root().size_changed.connect(_on_screen_resize)
+	_on_screen_resize()
+
 	$GameMusic.play()
 	game_over.visible = false
 	score = 0
@@ -37,6 +44,14 @@ func _ready():
 		asteroid.connect("exploded", _on_asteroid_exploded)
 		asteroid.connect("body_entered", asteroid._on_body_entered)
 
+func _on_screen_resize():
+	var screen_size = get_viewport_rect().size
+	background.global_position.x = screen_size.x
+	background.global_position.y = screen_size.y / 2
+	starfieldBack.process_material.emission_box_extents.y = screen_size.y / 2
+	starfieldMiddle.process_material.emission_box_extents.y = screen_size.y / 2
+	starfieldFront.process_material.emission_box_extents.y = screen_size.y / 2
+
 func _on_player_died():
 	$Crash.play(2.0)
 	player.global_position = spawn_pos.global_position
@@ -47,6 +62,8 @@ func _on_player_died():
 	else:
 		lives = 0
 		game_over.visible = true
+		$GameMusic.stop()
+		$GameOver.play()
 		print("game over")
 
 

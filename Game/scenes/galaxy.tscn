@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cym4j833qkj1c"]
+[gd_scene load_steps=16 format=3 uid="uid://cym4j833qkj1c"]
 
 [ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
 [ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
@@ -11,9 +11,68 @@
 [ext_resource type="AudioStream" uid="uid://b16eqgske8s82" path="res://assets/impact_small.wav" id="9_8yfet"]
 [ext_resource type="AudioStream" uid="uid://difgqvmkqeuws" path="res://assets/crash.wav" id="10_qr7s8"]
 [ext_resource type="AudioStream" uid="uid://d1d23ic4tqd7m" path="res://assets/gameMusic.mp3" id="11_h4omf"]
+[ext_resource type="AudioStream" uid="uid://xpn43aivrfcf" path="res://assets/gameOver.wav" id="11_sic5m"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rl0qb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-10, 0, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_av0yn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-10, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 24.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_btuuk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-10, 0, 0)
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 44.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 5.0
 
 [node name="Galaxy" type="Node2D"]
 script = ExtResource("1_toxde")
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(1286, 370)
+
+[node name="StarfieldBack" type="GPUParticles2D" parent="Background"]
+z_index = -100
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_rl0qb")
+lifetime = 1000.0
+preprocess = 600.0
+
+[node name="StarfieldMiddle" type="GPUParticles2D" parent="Background"]
+z_index = -95
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_av0yn")
+lifetime = 1000.0
+preprocess = 600.0
+
+[node name="StarfieldFront" type="GPUParticles2D" parent="Background"]
+z_index = -90
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_btuuk")
+lifetime = 1000.0
+preprocess = 600.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -65,6 +124,9 @@ stream = ExtResource("9_8yfet")
 
 [node name="Crash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_qr7s8")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_sic5m")
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_h4omf")
