@@ -25,6 +25,9 @@ func _ready():
 	angular_speed = 0.0
 
 func _process(_delta):
+	if !alive:
+		return
+
 	if Input.is_action_pressed("fire"):
 		if !shoot_cooldown:
 			shoot_laser()
@@ -33,6 +36,9 @@ func _process(_delta):
 			$MuzzleCooldown.start()
 
 func _physics_process(delta):
+	if !alive:
+		return
+
 	var input_vector := Vector2(0, Input.get_axis("forward", "back"))
 	velocity += input_vector.rotated(rotation) * acceleration
 	velocity = velocity.limit_length(max_speed)
@@ -80,11 +86,10 @@ func die(sourceOfDeath: Asteroid):
 	if alive:
 		print("Death by " + sourceOfDeath.name)
 		alive = false
-		# move off screen to prevent additional hit during respawn
-		global_position = Vector2(-1000,-1000)
+		sprite.visible = false
+		cshape.set_deferred("disabled", true)
 		print("dying")
 		emit_signal("died")
-		process_mode = Node.PROCESS_MODE_DISABLED
 	else:
 		print("Death by " + sourceOfDeath.name)
 		print("already dead")
@@ -96,7 +101,8 @@ func respawn(pos):
 		global_position = pos
 		velocity = Vector2.ZERO
 		angular_speed = 0
+		sprite.visible = true
+		cshape.set_deferred("disabled", false)
 		print("resurrected")
-		process_mode = Node.PROCESS_MODE_INHERIT
 	else:
 		print("already alive")

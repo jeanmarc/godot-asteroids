@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cym4j833qkj1c"]
+[gd_scene load_steps=12 format=3 uid="uid://cym4j833qkj1c"]
 
 [ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
 [ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
 [ext_resource type="PackedScene" uid="uid://d2dueasy31sjv" path="res://scenes/hud.tscn" id="2_g23xk"]
 [ext_resource type="PackedScene" uid="uid://bu1yjb7kn6kvl" path="res://scenes/asteroid.tscn" id="3_2grgs"]
 [ext_resource type="PackedScene" uid="uid://ydhplh5chlyo" path="res://scenes/game_over.tscn" id="3_8a6gk"]
+[ext_resource type="PackedScene" uid="uid://b882qlpgsxkro" path="res://scenes/player_spawn_area.tscn" id="6_4b2im"]
+[ext_resource type="AudioStream" uid="uid://tkvsesiwqsia" path="res://assets/zap.wav" id="7_fovdp"]
+[ext_resource type="AudioStream" uid="uid://bjd1i66npa4v" path="res://assets/impact_big.wav" id="8_em2ba"]
+[ext_resource type="AudioStream" uid="uid://b16eqgske8s82" path="res://assets/impact_small.wav" id="9_8yfet"]
+[ext_resource type="AudioStream" uid="uid://difgqvmkqeuws" path="res://assets/crash.wav" id="10_qr7s8"]
+[ext_resource type="AudioStream" uid="uid://d1d23ic4tqd7m" path="res://assets/gameMusic.mp3" id="11_h4omf"]
 
 [node name="Galaxy" type="Node2D"]
 script = ExtResource("1_toxde")
@@ -44,3 +50,23 @@ one_shot = true
 
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
 position = Vector2(622, 373)
+
+[node name="PlayerSpawnArea" parent="PlayerSpawnPos" instance=ExtResource("6_4b2im")]
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fovdp")
+volume_db = -15.0
+
+[node name="BigImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_em2ba")
+
+[node name="SmallImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8yfet")
+
+[node name="Crash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_qr7s8")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_h4omf")
+volume_db = -10.0
+autoplay = true
