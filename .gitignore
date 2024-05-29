@@ -4,5 +4,7 @@
 .godot/
 
 imports/
+exports/
+Exports/
 
 *.blend

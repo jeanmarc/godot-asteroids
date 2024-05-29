@@ -32,7 +32,6 @@ func _process(_delta):
 			$MuzzleCooldown.wait_time = fire_rate
 			$MuzzleCooldown.start()
 
-
 func _physics_process(delta):
 	var input_vector := Vector2(0, Input.get_axis("forward", "back"))
 	velocity += input_vector.rotated(rotation) * acceleration

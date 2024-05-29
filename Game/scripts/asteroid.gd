@@ -26,7 +26,6 @@ var points: int:
 
 func _ready():
 	rotation = randf_range(0, TAU)
-	rotation = 0
 
 	match size:
 		AsteroidSize.LARGE:
