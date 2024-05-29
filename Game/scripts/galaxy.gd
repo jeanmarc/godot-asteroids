@@ -13,11 +13,14 @@ var score := 0:
 		score = value
 		hud.score = score
 
-var lives := 3
+var lives := 3:
+	set(value):
+		lives = value
+		hud.init_lives(value)
 
 func _ready():
 	score = 0
-	lives = 3
+	lives = 5
 	print("start")
 	print(lives)
 

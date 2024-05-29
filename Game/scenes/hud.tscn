@@ -23,3 +23,11 @@ offset_right = 269.0
 offset_bottom = 53.0
 text = "Score: 9999"
 label_settings = SubResource("LabelSettings_mx7k2")
+
+[node name="Lives" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 55.0
+offset_right = 56.0
+offset_bottom = 95.0
+scale = Vector2(0.365, 0.365)
