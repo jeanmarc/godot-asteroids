@@ -72,4 +72,4 @@ reset={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.0687982, 0.0687983, 0.0687982, 1)
+environment/defaults/default_clear_color=Color(0.0142752, 0.0142752, 0.0142752, 1)
