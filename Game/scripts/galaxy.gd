@@ -98,7 +98,7 @@ func _on_asteroid_exploded(pos, size, points):
 		Asteroid.AsteroidSize.SMALL:
 			$SmallImpact.play()
 	score += points
-	for i in range(4):
+	for i in range(5):
 		match size:
 			Asteroid.AsteroidSize.LARGE:
 				spawn_asteroid(pos, Asteroid.AsteroidSize.MEDIUM)
