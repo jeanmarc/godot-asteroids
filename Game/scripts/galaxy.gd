@@ -49,6 +49,8 @@ func _ready():
 
 func _on_screen_resize():
 	var screen_size = get_viewport_rect().size
+	spawn_pos.global_position.x = screen_size.x / 2
+	spawn_pos.global_position.y = screen_size.y / 2
 	background.global_position.x = screen_size.x
 	background.global_position.y = screen_size.y / 2
 	starfieldBack.process_material.emission_box_extents.y = screen_size.y / 2
