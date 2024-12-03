@@ -1,0 +1,142 @@
+[gd_scene load_steps=17 format=3 uid="uid://cym4j833qkj1c"]
+
+[ext_resource type="PackedScene" uid="uid://bmgjkjih0noug" path="res://scenes/player.tscn" id="1_amfso"]
+[ext_resource type="Script" path="res://scripts/galaxy.gd" id="1_toxde"]
+[ext_resource type="PackedScene" uid="uid://d2dueasy31sjv" path="res://scenes/hud.tscn" id="2_g23xk"]
+[ext_resource type="PackedScene" uid="uid://bu1yjb7kn6kvl" path="res://scenes/asteroid.tscn" id="3_2grgs"]
+[ext_resource type="PackedScene" uid="uid://ydhplh5chlyo" path="res://scenes/game_over.tscn" id="3_8a6gk"]
+[ext_resource type="PackedScene" uid="uid://b882qlpgsxkro" path="res://scenes/player_spawn_area.tscn" id="6_4b2im"]
+[ext_resource type="AudioStream" uid="uid://tkvsesiwqsia" path="res://assets/zap.wav" id="7_fovdp"]
+[ext_resource type="AudioStream" uid="uid://bjd1i66npa4v" path="res://assets/impact_big.wav" id="8_em2ba"]
+[ext_resource type="AudioStream" uid="uid://b16eqgske8s82" path="res://assets/impact_small.wav" id="9_8yfet"]
+[ext_resource type="AudioStream" uid="uid://difgqvmkqeuws" path="res://assets/crash.wav" id="10_qr7s8"]
+[ext_resource type="AudioStream" uid="uid://d1d23ic4tqd7m" path="res://assets/gameMusic.mp3" id="11_h4omf"]
+[ext_resource type="AudioStream" uid="uid://xpn43aivrfcf" path="res://assets/gameOver.wav" id="11_sic5m"]
+[ext_resource type="AudioStream" uid="uid://b4whucam3fobh" path="res://assets/game-win.mp3" id="12_u4oth"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rl0qb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-10, 0, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_av0yn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-10, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 24.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_btuuk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-10, 0, 0)
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 44.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 5.0
+
+[node name="Galaxy" type="Node2D"]
+script = ExtResource("1_toxde")
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(1286, 370)
+
+[node name="StarfieldBack" type="GPUParticles2D" parent="Background"]
+z_index = -100
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_rl0qb")
+lifetime = 1000.0
+preprocess = 600.0
+
+[node name="StarfieldMiddle" type="GPUParticles2D" parent="Background"]
+z_index = -95
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_av0yn")
+lifetime = 1000.0
+preprocess = 600.0
+
+[node name="StarfieldFront" type="GPUParticles2D" parent="Background"]
+z_index = -90
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_btuuk")
+lifetime = 1000.0
+preprocess = 600.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("2_g23xk")]
+
+[node name="GameOver" parent="UI" instance=ExtResource("3_8a6gk")]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("1_amfso")]
+position = Vector2(628, 364)
+
+[node name="Lasers" type="Node" parent="."]
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="Asteroid2" parent="Asteroids" instance=ExtResource("3_2grgs")]
+position = Vector2(989, 88)
+
+[node name="Asteroid" parent="Asteroids" instance=ExtResource("3_2grgs")]
+position = Vector2(276, 262)
+
+[node name="Asteroid3" parent="Asteroids" instance=ExtResource("3_2grgs")]
+position = Vector2(197, 612)
+
+[node name="Asteroid4" parent="Asteroids" instance=ExtResource("3_2grgs")]
+position = Vector2(1049, 353)
+
+[node name="Asteroid5" parent="Asteroids" instance=ExtResource("3_2grgs")]
+position = Vector2(872, 653)
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CheckWinTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="PlayerSpawnPos" type="Node2D" parent="."]
+position = Vector2(622, 373)
+
+[node name="PlayerSpawnArea" parent="PlayerSpawnPos" instance=ExtResource("6_4b2im")]
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fovdp")
+volume_db = -15.0
+
+[node name="BigImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_em2ba")
+
+[node name="SmallImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8yfet")
+
+[node name="Crash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_qr7s8")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_sic5m")
+
+[node name="GameWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_u4oth")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_h4omf")
+volume_db = -10.0
+autoplay = true
